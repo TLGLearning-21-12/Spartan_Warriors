@@ -1,10 +1,10 @@
 package com.spartan.workout.competition.client;
 
     public class Person {
-        String firstName;
-        String lastName;
-        int age;
-        String email;
+        private String firstName;
+        private String lastName;
+        private int age;
+        private String email;
 
         public Person(String firstName, String lastName, int age, String email) {
             this.firstName = firstName;
@@ -47,12 +47,7 @@ package com.spartan.workout.competition.client;
 
         @Override
         public String toString() {
-            return "Person{" +
-                    "firstName='" + firstName + '\'' +
-                    ", lastName='" + lastName + '\'' +
-                    ", age=" + age +
-                    ", email='" + email + '\'' +
-                    '}';
+            return "Person{" + "firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' + ", age=" + age + ", email='" + email + '\'' + '}';
         }
     }
-}
+
