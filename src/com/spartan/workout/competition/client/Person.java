@@ -6,6 +6,13 @@ package com.spartan.workout.competition.client;
         int age;
         String email;
 
+        public Person(String firstName, String lastName, int age, String email) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.age = age;
+            this.email = email;
+        }
+
         public String getFirstName() {
             return firstName;
         }
