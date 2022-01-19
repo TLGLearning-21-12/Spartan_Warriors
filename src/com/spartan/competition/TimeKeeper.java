@@ -3,6 +3,7 @@ package com.spartan.competition;
 import java.util.Scanner;
 
 public class TimeKeeper {
+
     private long startTimer;
     private long endTimer;
     private boolean runningTimer;
@@ -64,6 +65,9 @@ public class TimeKeeper {
     public long elapsed() {
         if (isRunningTimer()) {
             if (isPausedTimer()) {
+    public long elapsed(){
+        if (isRunningTimer()){
+            if (isPausedTimer()){
                 return (pausedStart - startTimer);
             }
             return (System.nanoTime() - startTimer);
@@ -101,6 +105,17 @@ public class TimeKeeper {
         System.out.println("Second place (time in minutes):" + times[1]);
         System.out.println("Third place (time in minutes):" + times[0]);
     }
+
+//    public long elapsed() {
+//        if (isRunningTimer()) {
+//            if (isPausedTimer())
+//                return (pausedStart - startTimer);
+// //           return (System.nanoTime()) - startTimer);
+//        } else
+//            return (endTimer - startTimer);
+//    }
+
+
 
     public String toString() {
         long enlapsed = elapsed();
