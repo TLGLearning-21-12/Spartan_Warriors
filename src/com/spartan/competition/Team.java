@@ -1,4 +1,4 @@
-package com.spartan.workout.competition.client;
+package com.spartan.competition;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
