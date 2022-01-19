@@ -1,4 +1,4 @@
-package com.spartan.workout.competition.client;
+package com.spartan.competition.client;
 
 public class TimeKeeper {
     private long startTimer;

@@ -1,4 +1,4 @@
-package com.spartan.workout.competition.client;
+package com.spartan.competition;
 
     public class Person {
         private String firstName;
