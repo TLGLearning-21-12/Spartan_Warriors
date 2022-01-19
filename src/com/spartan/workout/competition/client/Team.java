@@ -1,11 +1,14 @@
 package com.spartan.workout.competition.client;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 
 public class Team {
     public static void main(String[] args) {
+
         //Workout List
         List<String> workouts = new ArrayList<>();
         workouts.add("Workout 1");
@@ -22,12 +25,16 @@ public class Team {
         teams.add("Team 4 = Members 10, 11, 12");
         teams.add("Team 5 = Members 13, 14, 15");
         System.out.println("Team list " + teams.toString());
-        //Team List
-        //List<Integer> teams = new ArrayList<>();
-        //teams.add(1);
-        //teams.add(2);
-        //teams.add(3);
-        //System.out.println("Team " + teams.toString());
+
+        for (int i = 0; i < teams.size(); i++) {
+           int index = (int) (Math.random() * teams.size());
+           System.out.println(" Random Element is :" + teams.get(index));
+       }
     }
 
 }
+
+//       for (int i = 0; i < teams.size(); i++) {
+//           int index = (int) (Math.random() * teams.size());
+//           System.out.println(" Random Element is :" + teams.get(index));
+//       }
