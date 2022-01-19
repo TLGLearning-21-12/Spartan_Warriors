@@ -14,29 +14,20 @@ public class Team {
         workouts.add("Workout 4");
         workouts.add("Workout 5");
         System.out.println("Workout list " + workouts.toString());
-
-        List<String> members = new ArrayList<>();
-        members.add("Member 1");
-        members.add("Member 2");
-        members.add("Member 3");
-        members.add("Member 4");
-        members.add("Member 5");
-        members.add("Member 6");
-        members.add("Member 7");
-        members.add("Member 8");
-        members.add("Member 9");
-        members.add("Member 10");
-        members.add("Member 11");
-        members.add("Member 12");
-        members.add("Member 13");
-        members.add("Member 14");
-        members.add("Member 15");
-        System.out.println("Member list " + members.toString());
-
-        List<Integer> teams = new ArrayList<>();
-        teams.add(1);
-        teams.add(2);
-        teams.add(3);
-        System.out.println("Team " + teams.toString());
+        //Team List
+        List<String> teams = new ArrayList<>();
+        teams.add("Team 1 = Members 1, 2, 3");
+        teams.add("Team 2 = Members 4, 5, 6");
+        teams.add("Team 3 = Members 7, 8, 9");
+        teams.add("Team 4 = Members 10, 11, 12");
+        teams.add("Team 5 = Members 13, 14, 15");
+        System.out.println("Team list " + teams.toString());
+        //Team List
+        //List<Integer> teams = new ArrayList<>();
+        //teams.add(1);
+        //teams.add(2);
+        //teams.add(3);
+        //System.out.println("Team " + teams.toString());
     }
+
 }
