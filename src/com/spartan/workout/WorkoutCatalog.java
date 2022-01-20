@@ -29,6 +29,4 @@ public class WorkoutCatalog {
         Object randomValue = values[generator.nextInt(values.length)];
         return randomValue;
     }
-
-
 }
