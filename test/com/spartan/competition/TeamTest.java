@@ -7,9 +7,11 @@ import static org.junit.Assert.*;
 
 public class TeamTest {
 
+    private Team team;
+
     //@Before
     //public void setUp() {
-    //    team = new Team();
+    //   team = new Team();
     //}
 
     @Test
