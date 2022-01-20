@@ -1,80 +1,89 @@
 package com.spartan.competition;
+import com.spartan.workout.Workout;
 
+import java.time.Instant;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-
+import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 
 public class Team {
-    private Person p1;
-    private Person p2;
-    private Person p3;
 
-    public Team (Person p1){
-        this.p1 = p1;
-    }
+    //CONSTANTS
+    private static final int MAX_SIZE = 3;
 
-    public Team (Person p1, Person p2){
-        this.p1 = p1;
-        this.p2 = p2;
-    }
+    //INSTANCE VARIABLES
+    private int teamNumber;
+    private List<Person> members;
+    private List<Workout> workoutPlan;
+    private int totalPoints;
+    private int speedCompleted;
 
-    public Team(Person p1, Person p2, Person p3) {
-        this.p1 = p1;
-        this.p2 = p2;
-        this.p3 = p3;
-    }
+    //IMPLICIT NO-ARGS CTOR (DEFAULT)
 
-    public Person getP1() {return p1;}
-    public void setP1(Person p1) {this.p1 = p1;}
-
-    public Person getP2() {return p2;}
-    public void setP2(Person p2) {this.p2 = p2;}
-
-    public Person getP3() {return p3;}
-    public void setP3(Person p3) {this.p3 = p3;}
-
-    public List<Person> team = new ArrayList();
-
-    public void setTeam(Person p){
-        if(team.isEmpty()){
-            team = new ArrayList<>();
+    //PRINTS LIST OF ALL ASSIGNED MEMBERS
+    public void listMembers(){
+        System.out.println("\nTEAM " + this.getTeamNumber() + "'S MEMBERS: ");
+        int index = 1;
+        for(Person p : members){
+            System.out.println(index + ") " + p.getFirstName().toUpperCase() + " " + p.getLastName().toUpperCase());
+            index++;
         }
-        team.add(p);
     }
 
-    public void printTeam(){
-        if(!team.isEmpty()){
-            for(Person p : team){
-                System.out.println(p);
+    //RANDOMLY ASSIGNS MAX MEMBERS GIVEN A LIST
+    public void assignRandom (List<Person> roster){
+        List<Person> newList = new ArrayList<>();
+        int randIndex;
+        while(newList.size() < MAX_SIZE){
+            randIndex = (int) (Math.random() * roster.size());
+            if(!newList.contains(roster.get(randIndex))){
+                newList.add(roster.get(randIndex));
+                roster.remove(randIndex);
             }
         }
+        this.setMembers(newList);
     }
 
-    public static void main(String[] args) {
+    //ACCESSORS && MUTATORS
+    public int getTeamNumber(){
+        return teamNumber;
+    }
 
+    public void setTeamNumber(int teamNumber){
+        this.teamNumber = teamNumber;
+    }
+
+    public List<Person> getMembers(){
+        return members;
+    }
+
+    public void setMembers(List<Person> members){
+        this.members = members;
+    }
+
+    public int getTotalPoints() {
+        return totalPoints;
+    }
+
+    public List<Workout> getWorkoutPlan(){
+        return workoutPlan;
     }
 
 
-    @Override
-    public String toString() {
-        return "Team{" +
-                "p1=" + p1 +
-                ", p2=" + p2 +
-                ", p3=" + p3 +
-                '}';
-    }
-}
-//    private List<Person>team;
-//
 //    public static void main(String[] args) {
 //
 //
-//
 //        //Team List
-//        List<String> teams = new ArrayList<>();
+//        List<String> teams = new ArrayList<>();      //CAN TRACK A LIST OF PERSON OBJECTS AS AN INSTANCE VARIABLE IN TEAM
+//        teams.add("Team 1");
+//        teams.add("Team 2");
+//        teams.add("Team 3");
+//        teams.add("Team 4");
+//        teams.add("Team 5");
 //        //System.out.println("Team list " + teams.toString());
+
 //        //Workout List
 //        List<String> workouts = new ArrayList<>();
 //        workouts.add("Workout 1");
@@ -83,6 +92,7 @@ public class Team {
 //        workouts.add("Workout 4");
 //        workouts.add("Workout 5");
 //        //System.out.println("Workout list " + workouts.toString());
+
 //        //Members List
 //        List<String> members = new ArrayList<>();
 //        members.add("Members 1, 2, 3");
@@ -91,7 +101,7 @@ public class Team {
 //        members.add("Members 10, 11, 12");
 //        members.add("Members 13, 14, 15");
 //
-//        Random numberGenerator = new Random();
+//        Random numberGenerator = new Random();        // CAN BE EXTRACTED OUT TO ITS OWN METHOD IN TEAM AS A CUSTOM BUSINESS METHOD
 //        int nextRandom = numberGenerator.nextInt(5);
 //        Set<Integer> validate = new HashSet<>();
 //        validate.add(nextRandom);
@@ -106,8 +116,17 @@ public class Team {
 //        }
 //    }
 
+    @Override
+    public String toString() {
+        return  "Team{" +
+                "teamNumber=" + this.getTeamNumber() +
+                ", members=" + this.getMembers() +
+                ", workoutPlan=" + this.getWorkoutPlan() +
+                ", totalPoints=" + this.getTotalPoints() +
+                '}';
+    }
 
-
+}
 
         //for (int i = 0; i < teams.size(); i++) {
         //int index = (int) (Math.random() * teams.size());
