@@ -10,8 +10,8 @@ public class PersonTest {
     private Person person;
 
     @Before
-    public void setUp() {
-        person = new Person("Vernon", "Stephens", 27, "vern@amazon.com");
+    public void setUp() throws InvalidAgeException, InvalidEmailException {
+    person = new Person("Vernon", "Stephens", 26, "vern@amz.com");
     }
 
     @Test
@@ -26,12 +26,12 @@ public class PersonTest {
 
     @Test
     public void testGetAge() {
-        assertEquals(27, person.getAge());
+        assertEquals(26, person.getAge());
     }
 
     @Test
     public void testGetEmail() {
-        assertEquals("vern@amazon.com", person.getEmail());
+        assertEquals("vern@amz.com", person.getEmail());
     }
 
 
