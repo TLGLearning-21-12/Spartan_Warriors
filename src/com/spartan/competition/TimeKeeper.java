@@ -107,14 +107,14 @@ public class TimeKeeper {
         System.out.println("Third place (time in minutes):" + times[0]);
     }
 
-//    public long elapsed() {
-//        if (isRunningTimer()) {
-//            if (isPausedTimer())
-//                return (pausedStart - startTimer);
-// //           return (System.nanoTime()) - startTimer);
-//        } else
-//            return (endTimer - startTimer);
-//    }
+    public long elapsed() {
+        if (isRunningTimer()) {
+            if (isPausedTimer())
+                return (pausedStart - startTimer);
+            return (System.nanoTime()) - startTimer);
+        } else
+            return (endTimer - startTimer);
+    }
 
 
 
@@ -124,5 +124,7 @@ public class TimeKeeper {
     }
 
 }
+
+
 
  */

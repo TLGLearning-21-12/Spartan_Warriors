@@ -1,10 +1,9 @@
 package com.spartan.competition;
 import com.spartan.workout.Workout;
+import com.spartan.workout.WorkoutCatalog;
 
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 
@@ -47,92 +46,67 @@ public class Team {
     }
 
     //ACCESSORS && MUTATORS
-    public int getTeamNumber(){
-        return teamNumber;
-    }
+    public int getTeamNumber(){return teamNumber;}
+    public void setTeamNumber(int teamNumber){this.teamNumber = teamNumber;}
 
-    public void setTeamNumber(int teamNumber){
-        this.teamNumber = teamNumber;
-    }
-
-    public List<Person> getMembers(){
-        return members;
-    }
-
+    public List<Person> getMembers(){return members;}
     public void setMembers(List<Person> members){
-        this.members = members;
-    }
+        this.members = members;}
 
-    public int getTotalPoints() {
-        return totalPoints;
-    }
-
-    public List<Workout> getWorkoutPlan(){
-        return workoutPlan;
+    public int getTotalPoints() {return totalPoints;}
+    public int setTotalPoints() {this.totalPoints = timer();
+    return this.totalPoints;
     }
 
 
-//    public static void main(String[] args) {
-//
-//
-//        //Team List
-//        List<String> teams = new ArrayList<>();      //CAN TRACK A LIST OF PERSON OBJECTS AS AN INSTANCE VARIABLE IN TEAM
-//        teams.add("Team 1");
-//        teams.add("Team 2");
-//        teams.add("Team 3");
-//        teams.add("Team 4");
-//        teams.add("Team 5");
-//        //System.out.println("Team list " + teams.toString());
 
-//        //Workout List
-//        List<String> workouts = new ArrayList<>();
-//        workouts.add("Workout 1");
-//        workouts.add("Workout 2");
-//        workouts.add("Workout 3");
-//        workouts.add("Workout 4");
-//        workouts.add("Workout 5");
-//        //System.out.println("Workout list " + workouts.toString());
+    public List<Workout> getWorkoutPlan(){return workoutPlan;}
 
-//        //Members List
-//        List<String> members = new ArrayList<>();
-//        members.add("Members 1, 2, 3");
-//        members.add("Members 4, 5, 6");
-//        members.add("Members 7, 8, 9");
-//        members.add("Members 10, 11, 12");
-//        members.add("Members 13, 14, 15");
-//
-//        Random numberGenerator = new Random();        // CAN BE EXTRACTED OUT TO ITS OWN METHOD IN TEAM AS A CUSTOM BUSINESS METHOD
-//        int nextRandom = numberGenerator.nextInt(5);
-//        Set<Integer> validate = new HashSet<>();
-//        validate.add(nextRandom);
-//        for (int i = 0; i < 5; i++) {
-//            while(validate.contains(nextRandom)) {
-//                nextRandom = numberGenerator.nextInt(5);
-//            }
-//            validate.add(nextRandom);
-//            System.out.println(teams.get(nextRandom));
-//            System.out.println(workouts.get(nextRandom));
-//            System.out.println(members.get(nextRandom));
-//        }
-//    }
+    public int timer(){
+        Random generator = new Random();
+        int result = generator.nextInt(100);
+        return result;
+    }
+
+
 
     @Override
     public String toString() {
-        return  "Team{" +
-                "teamNumber=" + this.getTeamNumber() +
-                ", members=" + this.getMembers() +
-                ", workoutPlan=" + this.getWorkoutPlan() +
-                ", totalPoints=" + this.getTotalPoints() +
+        return "Team{" +
+                "teamNumber=" + teamNumber +
+                ", members=" + members +
+                ", workoutPlan=" + workoutPlan +
+                ", totalPoints=" + totalPoints +
+                ", speedCompleted=" + speedCompleted +
                 '}';
+    }
+
+    public static void main(String[] args) {
+
+        Team t1 = new Team();
+        Team t2 = new Team();
+        Team t3 = new Team();
+
+        Map<Integer, Integer> rounds = new HashMap<>();
+        rounds.put(1, t1.setTotalPoints());
+        rounds.put(2, t2.setTotalPoints());
+        rounds.put(3, t3.setTotalPoints());
+
+        List list=new ArrayList(rounds.entrySet());
+
+        Collections.sort(list,new Comparator(){
+            public int compare(Object obj1, Object obj2){
+                return ((Comparable)((Map.Entry)(obj1)).getValue
+
+                        ()).compareTo(((Map.Entry)(obj2)).getValue());
+            }
+        });
+        System.out.println(list);
+
     }
 
 }
 
-        //for (int i = 0; i < teams.size(); i++) {
-        //int index = (int) (Math.random() * teams.size());
-        //System.out.println(" Random Element is :" + teams.get(index));
 
-//       for (int i = 0; i < teams.size(); i++) {
-//           int index = (int) (Math.random() * teams.size());
-//           System.out.println(" Random Element is :" + teams.get(index));
-//       }
+
+
