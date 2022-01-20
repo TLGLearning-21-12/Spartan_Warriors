@@ -2,9 +2,8 @@ package com.spartan.competition;
 import com.spartan.workout.Workout;
 import com.spartan.workout.WorkoutCatalog;
 
-import java.time.Instant;
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
+
 
 
 public class Team {
