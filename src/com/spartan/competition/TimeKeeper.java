@@ -1,3 +1,4 @@
+/*
 package com.spartan.competition;
 
 import java.util.Scanner;
@@ -123,3 +124,5 @@ public class TimeKeeper {
     }
 
 }
+
+ */
