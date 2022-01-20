@@ -34,5 +34,4 @@ public class PersonTest {
         assertEquals("vern@amz.com", person.getEmail());
     }
 
-
 }
