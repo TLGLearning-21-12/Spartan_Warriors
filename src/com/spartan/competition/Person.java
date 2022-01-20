@@ -6,12 +6,19 @@ package com.spartan.competition;
         private int age;
         private String email;
 
+        public Person (){
+
+        }
+
         public Person(String firstName, String lastName, int age, String email) {
             this.firstName = firstName;
             this.lastName = lastName;
             this.age = age;
             this.email = email;
         }
+
+
+
 
         public String getFirstName() {
             return firstName;
