@@ -43,6 +43,9 @@ public class Team {
         }
         this.setMembers(newList);
     }
+    public void showWorkoutPlan(){
+        System.out.println(this.getWorkoutPlan());
+    }
 
     //ACCESSORS && MUTATORS
     public int getTeamNumber(){return teamNumber;}
