@@ -1,12 +1,7 @@
 package com.spartan.competition;
-import com.spartan.workout.Workout;
 
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-import java.util.concurrent.ThreadLocalRandom;
-
 
 public class Team {
 
@@ -16,7 +11,7 @@ public class Team {
     //INSTANCE VARIABLES
     private int teamNumber;
     private List<Person> members;
-    private List<Workout> workoutPlan;
+    private Object workoutPlan;
     private int totalPoints;
     private int speedCompleted;
 
@@ -30,6 +25,11 @@ public class Team {
             System.out.println(index + ") " + p.getFirstName().toUpperCase() + " " + p.getLastName().toUpperCase());
             index++;
         }
+    }
+
+    //print workoutPlan that was randomly assigned
+    public void showWorkoutPlan(){
+        System.out.println("Team");
     }
 
     //RANDOMLY ASSIGNS MAX MEMBERS GIVEN A LIST
@@ -67,8 +67,12 @@ public class Team {
         return totalPoints;
     }
 
-    public List<Workout> getWorkoutPlan(){
+    public Object getWorkoutPlan(){
         return workoutPlan;
+    }
+
+    public void setWorkoutPlan(Object catalog){
+        this.workoutPlan = catalog;
     }
 
 

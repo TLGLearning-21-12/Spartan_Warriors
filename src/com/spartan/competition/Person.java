@@ -1,17 +1,54 @@
 package com.spartan.competition;
 
-    public class Person {
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Person {
+
+        private static final int MIN_AGE = 18;
+        private static final int MAX_AGE = 80;
+
+
         private String firstName;
         private String lastName;
         private int age;
         private String email;
 
-        public Person(String firstName, String lastName, int age, String email) {
+        public Person(){
+
+        }
+
+        public Person(String firstName, String lastName, int age, String email) throws InvalidEmailException, InvalidAgeException {
             this.firstName = firstName;
             this.lastName = lastName;
-            this.age = age;
-            this.email = email;
+            setAge(age);
+            setEmail(email);
         }
+
+        public void setEmail(String email) throws InvalidEmailException{
+            String regex = "^(.+)@(.+)$";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(email);
+            if(matcher.matches()) {
+                this.email = email;
+            } else {
+                throw new InvalidEmailException("Invalid email provided.");
+            }
+        }
+
+        public boolean setAge(int age) throws InvalidAgeException{
+            boolean validAge;
+            if (age >= MIN_AGE && age <= MAX_AGE ){
+                validAge = true;
+                this.age = age;
+            } else{
+                throw new InvalidAgeException("Must be at least " + MIN_AGE
+                        + " and younger than " + MAX_AGE
+                        + "to participate in SPARTAN WARRIORS");
+            }
+            return validAge;
+        }
+
 
         public String getFirstName() {
             return firstName;
@@ -33,16 +70,8 @@ package com.spartan.competition;
             return age;
         }
 
-        public void setAge(int age) {
-            this.age = age;
-        }
-
         public String getEmail() {
             return email;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
         }
 
         @Override
