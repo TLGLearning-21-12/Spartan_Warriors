@@ -15,13 +15,12 @@ public class CompetitionDriver {
     private static final String EXIT = "Exit";
 
     private static Scanner scanner;
+    private static boolean signedUp = false;
 
     public static void main(String[] args) {
 
         //Catalog
-        WorkoutCatalog wc = new WorkoutCatalog();
-
-        wc.randomWorkout();
+        WorkoutCatalog workoutCatalog = new WorkoutCatalog();
 
         //List of Teams
         List<com.spartan.competition.Team> teams = new ArrayList<>();
@@ -29,19 +28,24 @@ public class CompetitionDriver {
         teams.add(new com.spartan.competition.Team());
         teams.add(new com.spartan.competition.Team());
 
-//        team.setWorkoutPlan(wc.randomWorkout());
-
-
         //participant roster
         List<Person> participants = new ArrayList<>();
-        participants.add(new Person("Vernon", "Stephens", 26, "vern@amz.com"));
-        participants.add(new Person("Sterling", "Meriweather", 27, "meri@amz.com"));
-        participants.add(new Person("Izzy", "Servin", 29, "izzy@amz.com"));
-        participants.add(new Person("Tim", "Olowookere", 28, "tim@amz.com"));
-        participants.add(new Person("Maria", "Nieves", 27, "maria@amz.com"));
-        participants.add(new Person("Zane", "Zeulner", 29, "josh@amz.com"));
-        participants.add(new Person("Sarah", "Lichy", 28, "sarah@amz.com"));
-        participants.add(new Person("Luxi", "Meng", 27, "maria@amz.com"));
+        try{
+            participants.add(new Person("Vernon", "Stephens", 26, "vern@amz.com"));
+            participants.add(new Person("Sterling", "Meriweather", 27, "meri@amz.com"));
+            participants.add(new Person("Izzy", "Servin", 29, "izzy@amz.com"));
+            participants.add(new Person("Tim", "Olowookere", 28, "tim@amz.com"));
+            participants.add(new Person("Maria", "Nieves", 27, "maria@amz.com"));
+            participants.add(new Person("Zane", "Zeulner", 29, "josh@amz.com"));
+            participants.add(new Person("Sarah", "Lichy", 28, "sarah@amz.com"));
+            participants.add(new Person("Luxi", "Meng", 27, "maria@amz.com"));
+
+        } catch (com.spartan.competition.InvalidEmailException e){
+            System.out.println(e.getMessage());
+        } catch (com.spartan.competition.InvalidAgeException ex){
+            ex.printStackTrace();
+            System.out.println(ex.getMessage());
+        }
 
         //list of our options menu
         List<String> options = new ArrayList<>();
@@ -74,6 +78,8 @@ public class CompetitionDriver {
             if(choice.equalsIgnoreCase(SIGN_UP)){
                 if(participants.size() < MAX_PARTICIPANTS){
 
+                    //Person person = new Person();
+
                     //collect user information
                     System.out.println("\nWhat is your first name?");
                     String firstName = scanner.next();
@@ -87,18 +93,20 @@ public class CompetitionDriver {
                     System.out.println("\nHow old are you?");
                     int age = scanner.nextInt();
 
-                    if(validAge(age)) {
-                        System.out.println("\nIs all your information correct?");
-                        String confirm = scanner.next();
-                        if(confirm.equalsIgnoreCase("y") || confirm.equalsIgnoreCase("yes")){
-                            signUp(firstName,lastName,age,email, participants);
+                    System.out.println("\nIs all your information correct?");
+                    String confirm = scanner.next();
+
+                    if(confirm.equalsIgnoreCase("y") || confirm.equalsIgnoreCase("yes")){
+                        signUp(firstName,lastName,age,email, participants);
+
+                        if(signedUp){
+                            System.out.println("YOU HAVE SUCCESSFULLY SIGNED UP FOR SPARTAN WARRIORS!");
                         }
                     }
 
                 } else {
                     System.out.println("Sorry we have reached the max capacity of participants for today's competition.");
                 }
-
 
             } else if (choice.equalsIgnoreCase(VIEW_PARTICIPANTS)){
                 if(participants.isEmpty()){
@@ -111,10 +119,19 @@ public class CompetitionDriver {
                 if(participants.size() == MAX_PARTICIPANTS){
                     System.out.println("\nASSIGNING TEAMS...");
                     int teamNumber = 1;
+
+                    Object competitionWorkout = workoutCatalog.randomWorkout();
+                    System.out.println("Today's Competition will be...\n"
+                            + competitionWorkout
+                            + "\nwhich every team will execute and compete to see who can complete it the fastest!");
+
                     for(com.spartan.competition.Team team : teams){
-                        team.assignRandom(participants);
                         team.setTeamNumber(teamNumber++);
+                        team.assignRandom(participants);
+                        team.setWorkoutPlan(competitionWorkout);
                         team.listMembers();
+
+                        //System.out.println(team.getWorkoutPlan());
                     }
                 } else {
                     System.out.println("Sorry we are still waiting on more people to sign up before starting the competition.");
@@ -123,21 +140,17 @@ public class CompetitionDriver {
         }
     }
 
-    public static void signUp(String first, String last, int age, String email, List<Person> roster){
-        Person p1 = new Person(first, last, age, email);
-        roster.add(p1);
-        System.out.println("YOU HAVE BEEN SUCCESSFULLY ADDED TO THE PARTICIPANTS ROSTER!");
-    }
-
-    public static boolean validAge(int age){
-        boolean validAge;
-        if (age >= 18 ){
-            validAge = true;
-        } else{
-            System.out.println("Sorry you must be 18 or older to sign up for Spartan Warriors. \nNext person please.");
-            validAge = false;
+    public static void signUp(String first, String last, int age, String email, List<Person> roster) {
+        try {
+            Person p1 = new Person(first, last, age, email);
+            roster.add(p1);
+            signedUp = true;
+        } catch(com.spartan.competition.InvalidEmailException e){
+            System.out.println(e.getMessage());
+        } catch (com.spartan.competition.InvalidAgeException ex){
+            ex.printStackTrace();
+            System.out.println(ex.getMessage());
         }
-        return validAge;
     }
 
     public static void listRoster(List<Person> participants){
