@@ -55,7 +55,7 @@ public class Team {
 
     public int getTotalPoints() {return totalPoints;}
     public int setTotalPoints() {this.totalPoints = timer();
-    return this.totalPoints;
+        return this.totalPoints;
     }
 
 
@@ -106,7 +106,3 @@ public class Team {
     }
 
 }
-
-
-
-
