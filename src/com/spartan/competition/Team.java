@@ -15,7 +15,7 @@ public class Team {
     //INSTANCE VARIABLES
     private int teamNumber;
     private List<Person> members;
-    private List<Workout> workoutPlan;
+    private Object workoutPlan;
     private int totalPoints;
     private int speedCompleted;
 
@@ -60,7 +60,10 @@ public class Team {
 
 
 
-    public List<Workout> getWorkoutPlan(){return workoutPlan;}
+    public Object getWorkoutPlan(){return workoutPlan;}
+    public void setWorkoutPlan(Object catalog){
+        this.workoutPlan = catalog;
+    }
 
     public int timer(){
         Random generator = new Random();
