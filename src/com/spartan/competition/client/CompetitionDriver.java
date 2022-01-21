@@ -1,5 +1,9 @@
-package com.spartan.competition;
+package com.spartan.competition.client;
 
+import com.spartan.competition.exceptions.InvalidAgeException;
+import com.spartan.competition.exceptions.InvalidEmailException;
+import com.spartan.competition.Person;
+import com.spartan.competition.Team;
 import com.spartan.workout.WorkoutCatalog;
 
 import java.util.*;
@@ -43,8 +47,7 @@ public class CompetitionDriver {
         } catch (InvalidEmailException e){
             System.out.println(e.getMessage());
         } catch (InvalidAgeException ex){
-            ex.printStackTrace();
-            System.out.println(ex.getMessage());
+            System.out.println(ex.getLocalizedMessage());
         }
 
         //list of our options menu
@@ -159,8 +162,7 @@ public class CompetitionDriver {
         } catch(InvalidEmailException e){
             System.out.println(e.getMessage());
         } catch (InvalidAgeException ex){
-            ex.printStackTrace();
-            System.out.println(ex.getMessage());
+            System.out.println(ex.getLocalizedMessage());
         }
     }
 

@@ -1,4 +1,4 @@
-package com.spartan.competition;
+package com.spartan.competition.exceptions;
 
 public class InvalidEmailException extends Exception {
 
