@@ -1,8 +1,5 @@
 package com.spartan.workout;
 
-import com.spartan.competition.InvalidAgeException;
-import com.spartan.competition.InvalidEmailException;
-import com.spartan.competition.Person;
 import org.junit.Before;
 import org.junit.Test;
 

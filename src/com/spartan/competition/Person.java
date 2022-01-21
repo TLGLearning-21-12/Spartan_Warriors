@@ -1,5 +1,8 @@
 package com.spartan.competition;
 
+import com.spartan.competition.exceptions.InvalidAgeException;
+import com.spartan.competition.exceptions.InvalidEmailException;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -39,9 +42,10 @@ public class Person {
         if (age >= MIN_AGE && age <= MAX_AGE ){
             this.age = age;
         } else {
-            throw new InvalidAgeException("Must be at least " + MIN_AGE
-                    + " and younger than " + MAX_AGE
-                    + "to participate in SPARTAN WARRIORS");
+            String msg = "Must be at least " + MIN_AGE
+                    + " years old and younger than " + MAX_AGE
+                    + " to participate in SPARTAN WARRIORS";
+            throw new InvalidAgeException(msg);
         }
     }
 
