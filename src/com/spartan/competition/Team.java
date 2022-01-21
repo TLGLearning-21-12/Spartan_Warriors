@@ -1,10 +1,6 @@
 package com.spartan.competition;
-import com.spartan.workout.Workout;
-import com.spartan.workout.WorkoutCatalog;
 
 import java.util.*;
-
-
 
 public class Team {
 
@@ -12,17 +8,18 @@ public class Team {
     private static final int MAX_SIZE = 3;
 
     //INSTANCE VARIABLES
-    private int teamNumber;
     private List<Person> members;
     private Object workoutPlan;
-    private int totalPoints;
-    private int speedCompleted;
+    private int speed;
+    private String teamName;
 
-    //IMPLICIT NO-ARGS CTOR (DEFAULT)
+    public Team(String name){
+        this.teamName = name;
+    }
 
     //PRINTS LIST OF ALL ASSIGNED MEMBERS
     public void listMembers(){
-        System.out.println("\nTEAM " + this.getTeamNumber() + "'S MEMBERS: ");
+        System.out.println("\nTEAM " + this.getTeamName().toUpperCase() + "'S MEMBERS: ");
         int index = 1;
         for(Person p : members){
             System.out.println(index + ") " + p.getFirstName().toUpperCase() + " " + p.getLastName().toUpperCase());
@@ -43,26 +40,38 @@ public class Team {
         }
         this.setMembers(newList);
     }
-    public void showWorkoutPlan(){
-        System.out.println(this.getWorkoutPlan());
-    }
 
     //ACCESSORS && MUTATORS
-    public int getTeamNumber(){return teamNumber;}
-    public void setTeamNumber(int teamNumber){this.teamNumber = teamNumber;}
 
-    public List<Person> getMembers(){return members;}
-    public void setMembers(List<Person> members){
-        this.members = members;}
-
-    public int getTotalPoints() {return totalPoints;}
-    public int setTotalPoints() {this.totalPoints = timer();
-        return this.totalPoints;
+    public String getTeamName() {
+        return teamName;
     }
 
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
 
+    public List<Person> getMembers(){
+        return members;
+    }
 
-    public Object getWorkoutPlan(){return workoutPlan;}
+    public void setMembers(List<Person> members){
+        this.members = members;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public int executeWorkout() {
+        this.speed = timer();
+        return this.speed;
+    }
+
+    public Object getWorkoutPlan(){
+        return workoutPlan;
+    }
+
     public void setWorkoutPlan(Object catalog){
         this.workoutPlan = catalog;
     }
@@ -73,41 +82,14 @@ public class Team {
         return result;
     }
 
-
-
     @Override
     public String toString() {
         return "Team{" +
-                "teamNumber=" + teamNumber +
-                ", members=" + members +
-                ", workoutPlan=" + workoutPlan +
-                ", totalPoints=" + totalPoints +
-                ", speedCompleted=" + speedCompleted +
+                "teamName=" + this.getTeamName() +
+                ", members=" + this.getMembers() +
+                ", workoutPlan=" + this.getWorkoutPlan() +
+                ", speed=" + this.getSpeed() +
                 '}';
-    }
-
-    public static void main(String[] args) {
-
-        Team t1 = new Team();
-        Team t2 = new Team();
-        Team t3 = new Team();
-
-        Map<Integer, Integer> rounds = new HashMap<>();
-        rounds.put(1, t1.setTotalPoints());
-        rounds.put(2, t2.setTotalPoints());
-        rounds.put(3, t3.setTotalPoints());
-
-        List list=new ArrayList(rounds.entrySet());
-
-        Collections.sort(list,new Comparator(){
-            public int compare(Object obj1, Object obj2){
-                return ((Comparable)((Map.Entry)(obj1)).getValue
-
-                        ()).compareTo(((Map.Entry)(obj2)).getValue());
-            }
-        });
-        System.out.println(list);
-
     }
 
 }
