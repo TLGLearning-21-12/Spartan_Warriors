@@ -23,10 +23,10 @@ public class CompetitionDriver {
         WorkoutCatalog workoutCatalog = new WorkoutCatalog();
 
         //List of Teams
-        List<com.spartan.competition.Team> teams = new ArrayList<>();
-        teams.add(new com.spartan.competition.Team());
-        teams.add(new com.spartan.competition.Team());
-        teams.add(new com.spartan.competition.Team());
+        List<Team> teams = new ArrayList<>();
+        teams.add(new Team("Sparta"));
+        teams.add(new Team("Rome"));
+        teams.add(new Team("Celica"));
 
         //participant roster
         List<Person> participants = new ArrayList<>();
@@ -40,9 +40,9 @@ public class CompetitionDriver {
             participants.add(new Person("Sarah", "Lichy", 28, "sarah@amz.com"));
             participants.add(new Person("Luxi", "Meng", 27, "maria@amz.com"));
 
-        } catch (com.spartan.competition.InvalidEmailException e){
+        } catch (InvalidEmailException e){
             System.out.println(e.getMessage());
-        } catch (com.spartan.competition.InvalidAgeException ex){
+        } catch (InvalidAgeException ex){
             ex.printStackTrace();
             System.out.println(ex.getMessage());
         }
@@ -118,41 +118,53 @@ public class CompetitionDriver {
             } else if (choice.equalsIgnoreCase(START_COMPETITION)){
                 if(participants.size() == MAX_PARTICIPANTS){
                     System.out.println("\nASSIGNING TEAMS...");
-                    int teamNumber = 1;
 
                     Object competitionWorkout = workoutCatalog.randomWorkout();
                     System.out.println("Today's Competition will be...\n"
                             + competitionWorkout
-                            + "\nwhich every team will execute and compete to see who can complete it the fastest!");
+                            + "\nwhich every team will execute and compete to see who has the fastest time!");
 
-                    for(com.spartan.competition.Team team : teams){
-                        team.setTeamNumber(teamNumber++);
+                    for(Team team : teams){
+
                         team.assignRandom(participants);
                         team.setWorkoutPlan(competitionWorkout);
                         team.listMembers();
-
-                        //System.out.println(team.getWorkoutPlan());
                     }
+
+                    countDown(5);
+
+                    List<Object> teamRankings = begin(teams);
+
+                    System.out.println("Teams' Ranking from fastest to slowest!: ");
+                    int rank = 1;
+                    for (Object obj: teamRankings){
+                        System.out.println(rank +")" + obj);
+                    }
+
                 } else {
-                    System.out.println("Sorry we are still waiting on more people to sign up before starting the competition.");
+                    System.out.println("Sorry we are still waiting on more people to sign up before starting the competition.\n" +
+                            "Current total of participants is : " + participants.size() + "\nWe need just " + (MAX_PARTICIPANTS - participants.size()
+                            + " more to sign up and then we can begin. Thank you for your patience!"));
                 }
             }
         }
     }
 
+    //Person instantiation
     public static void signUp(String first, String last, int age, String email, List<Person> roster) {
         try {
             Person p1 = new Person(first, last, age, email);
             roster.add(p1);
             signedUp = true;
-        } catch(com.spartan.competition.InvalidEmailException e){
+        } catch(InvalidEmailException e){
             System.out.println(e.getMessage());
-        } catch (com.spartan.competition.InvalidAgeException ex){
+        } catch (InvalidAgeException ex){
             ex.printStackTrace();
             System.out.println(ex.getMessage());
         }
     }
 
+    //lists all participants
     public static void listRoster(List<Person> participants){
         int index = 1;
         System.out.println("\n****\nOur current participants roster is: ");
@@ -161,4 +173,32 @@ public class CompetitionDriver {
             index++;
         }
     }
+
+    //starts competition
+    public static List<Object> begin(List<Team> teams){
+        Map<String, Integer> rounds = new HashMap<>();
+        for(Team team : teams){
+            rounds.put(team.getTeamName(), team.executeWorkout());
+        }
+
+        //evaluates each teams speed and sorts from fastest to slowest
+        List list = new ArrayList<>(rounds.entrySet());
+        Collections.sort(list, new Comparator() {
+            public int compare(Object obj1, Object obj2){
+                return ((Comparable) ((Map.Entry)(obj1)).getValue())
+                        .compareTo(((Map.Entry)(obj2)).getValue());
+            }
+        });
+        return list;
+    }
+
+    //counts down start of competition
+    public static void countDown(int num){
+        System.out.println("\n****\nCOMPETITION STARTING IN....");
+        for(int i = num; i >= 1; i--){
+            System.out.println(i + "...");
+        }
+        System.out.println("BEGIN!!!!\n");
+    }
+
 }
