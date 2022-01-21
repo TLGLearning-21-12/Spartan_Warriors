@@ -1,5 +1,7 @@
 package com.spartan.competition;
 
+import com.spartan.competition.exceptions.InvalidAgeException;
+import com.spartan.competition.exceptions.InvalidEmailException;
 import org.junit.Before;
 import org.junit.Test;
 

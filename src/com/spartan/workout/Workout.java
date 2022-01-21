@@ -4,10 +4,6 @@ public class Workout {
     private String title;
     private String exercises;
 
-    public Workout(){
-
-    }
-
     public Workout( String title, String exercises) {
         setTitle(title);
         setExercises(exercises);
@@ -23,9 +19,5 @@ public class Workout {
     @Override
     public String toString() {
         return "The " + this.getTitle() + " consisting of " + this.getExercises();
-        // return "Workout { " +
-//                "title='" + title + '\'' +
-//                ", exercises='" + exercises + '\'' +
-//                '}';
     }
 }
