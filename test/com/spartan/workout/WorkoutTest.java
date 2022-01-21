@@ -13,7 +13,7 @@ public class WorkoutTest {
     private Workout workout;
 
     @Before
-    public void setUp() {
+    public void setup() {
         workout = new Workout("Sally", "20 sit ups, 30 air squats, .5 mile run");
     }
 

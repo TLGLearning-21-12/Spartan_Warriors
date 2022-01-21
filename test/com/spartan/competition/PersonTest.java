@@ -10,7 +10,7 @@ public class PersonTest {
     private Person person;
 
     @Before
-    public void setUp() throws InvalidAgeException, InvalidEmailException {
+    public void setup() throws InvalidAgeException, InvalidEmailException {
     person = new Person("Vernon", "Stephens", 26, "vern@amz.com");
     }
 
