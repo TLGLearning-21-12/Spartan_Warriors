@@ -8,7 +8,8 @@ import com.spartan.workout.WorkoutCatalog;
 
 import java.util.*;
 
-//Preparing to change the entire application
+//Preparing to change the entire application. Just some small changes
+
 
 public class CompetitionDriver {
 
