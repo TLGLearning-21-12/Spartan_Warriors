@@ -1,9 +1,10 @@
-# Spartan_Warriors
+# This is a version 2 of Spartan_Warriors
 
-Spartan Warrior is an application where teams compete to win a workout challenge. 
-The team who executes the workout plan the fastes earns the title of Spartan Warrior.
+This is a workout application where team will compete to win a workout challenge. The team who completes the workout with the fastest combined time wins "The Workout" 
 
-Authors: Vernon Stephens, Sterling Meriweather, Isabel Servin
+Original Authors: Vernon Stephens, Sterling "Meri" Meriweather, Isabel Servin
+
+Current Authors: Meri
 
 Note to authors:
 Be careful when merging. 
