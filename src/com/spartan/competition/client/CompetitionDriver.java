@@ -8,6 +8,8 @@ import com.spartan.workout.WorkoutCatalog;
 
 import java.util.*;
 
+//Preparing to change the entire application
+
 public class CompetitionDriver {
 
     private static final int MAX_PARTICIPANTS = 9;
